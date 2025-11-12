@@ -13,8 +13,8 @@ public class DAO {
 
     public DAO(String bestandsnaam) throws FileNotFoundException {
         try(Scanner scanner = new Scanner(new File(bestandsnaam))){
-            String firtLine = scanner.nextLine();
-            Scanner sc = new Scanner(firtLine);
+            String firstLine = scanner.nextLine();
+            Scanner sc = new Scanner(firstLine);
             sc.useDelimiter(" ");
             int breedte = sc.nextInt();
             int hoogte = sc.nextInt();
@@ -26,7 +26,8 @@ public class DAO {
                 int lengte = shipScanner.nextInt();
                 int x = shipScanner.nextInt();
                 int y = shipScanner.nextInt();
-                Ship ship = new Ship(lengte, x, y);
+                String name = shipScanner.next();
+                Ship ship = new Ship(name, lengte, x, y);
                 schepen.add(ship);
             }
         }
