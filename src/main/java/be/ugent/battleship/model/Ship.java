@@ -7,7 +7,7 @@ public class Ship {
     private final List<Position> positions;
     private final Set<Position> hits = new HashSet<>();
 
-    public Ship(String name, List<Position> positions){
+    public Ship(String name, List<Position> positions) {
         this.name = name;
         this.positions = new ArrayList<>(positions);
     }
@@ -31,6 +31,4 @@ public class Ship {
     public boolean isSunk() {
         return hits.size() >= positions.size();
     }
-
-
 }

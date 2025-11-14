@@ -1,20 +1,20 @@
 package be.ugent.battleship.model;
 
 public class Cell {
-    public final Position pos;
-    public Ship ship;
-    public boolean wasShot = false;
+    private final Position pos;
+    private Ship ship;
+    private boolean wasShot = false;
 
     public Cell(Position pos) {
         this.pos = pos;
     }
 
-    public boolean hasShip() {
-        return ship != null;
-    }
-
     public Position getPosition() {
         return pos;
+    }
+
+    public boolean hasShip() {
+        return ship != null;
     }
 
     public void setShip(Ship ship) {
@@ -32,5 +32,5 @@ public class Cell {
     public void markShot() {
         this.wasShot = true;
     }
-
 }
+

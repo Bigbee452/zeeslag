@@ -1,39 +1,39 @@
 package be.ugent.battleship.model;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Grid {
-    private int breedte;
-    private int hoogte;
-    private Cell[][] cells;
+    private final int cols;
+    private final int rows;
+    private final Cell[][] grid;
     private final List<Ship> ships = new ArrayList<>();
 
-    public Grid(int breedte, int hoogte){
-        this.breedte = breedte;
-        this.hoogte = hoogte;
-        cells = new Cell[hoogte][breedte];
-        for(int i = 0; i < hoogte; i++){
-            for(int j = 0; j < breedte; j++){
-                Position pos = new Position(j, i);
-                cells[i][j] = new Cell(pos);
+    public Grid(int cols, int rows) {
+        this.cols = cols;
+        this.rows = rows;
+        grid = new Cell[rows][cols];
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < cols; c++) {
+                grid[r][c] = new Cell(new Position(c, r));
             }
         }
     }
 
-    public int getRowCount() { return hoogte; }
-    public int getColumnCount() { return breedte; }
+    public int getRowCount() { return rows; }
+    public int getColumnCount() { return cols; }
 
     public Cell getCell(Position p) {
-        if (p.x < 0 || p.x >= breedte || p.y < 0 || p.y >= hoogte) return null;
-        return cells[p.y][p.x]; }
+        if (p == null) return null;
+        if (p.x < 0 || p.x >= cols || p.y < 0 || p.y >= rows) return null;
+        return grid[p.y][p.x];
+    }
 
     public boolean placeShip(Ship ship) {
         for (Position p : ship.getPositions()) {
             if (getCell(p) == null) return false;
             if (getCell(p).hasShip()) return false;
         }
+
         ships.add(ship);
         for (Position p : ship.getPositions()) {
             getCell(p).setShip(ship);
