@@ -1,23 +1,35 @@
 package be.ugent.battleship.model;
 
+import java.util.*;
+
 public class Ship {
     private final String name;
-    private final int lengte;
-    private final int x;
-    private final int y;
+    private final List<Position> positions;
+    private final Set<Position> hits = new HashSet<>();
 
-    public Ship(String name, int lengte, int x, int y){
+    public Ship(String name, List<Position> positions){
         this.name = name;
-        this.lengte = lengte;
-        this.x = x;
-        this.y = y;
+        this.positions = new ArrayList<>(positions);
     }
 
     public String getName() {
         return name;
     }
-    public int getLengte() {
-        return lengte;
+
+    public List<Position> getPositions() {
+        return Collections.unmodifiableList(positions);
+    }
+
+    public boolean occupies(Position p) {
+        return positions.contains(p);
+    }
+
+    public void registerHit(Position p) {
+        if (occupies(p)) hits.add(p);
+    }
+
+    public boolean isSunk() {
+        return hits.size() >= positions.size();
     }
 
 

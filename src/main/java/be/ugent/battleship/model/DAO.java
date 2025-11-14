@@ -9,27 +9,52 @@ import java.util.Scanner;
 
 public class DAO {
     private List<Ship> schepen = new ArrayList<>();
-    Grid grid;
+    private int breedte;
+    private int hoogte;
 
     public DAO(String bestandsnaam) throws FileNotFoundException {
         try(Scanner scanner = new Scanner(new File(bestandsnaam))){
             String firstLine = scanner.nextLine();
             Scanner sc = new Scanner(firstLine);
             sc.useDelimiter(" ");
-            int breedte = sc.nextInt();
-            int hoogte = sc.nextInt();
-            grid = new Grid(breedte, hoogte);
-            while(scanner.hasNext()){
-                String line = scanner.nextLine();
+            this.breedte = sc.nextInt();
+            this.hoogte = sc.nextInt();
+            while(scanner.hasNextLine()){
+                String line = scanner.nextLine().trim();
                 Scanner shipScanner = new Scanner(line);
-                shipScanner.useDelimiter(" ");
                 int lengte = shipScanner.nextInt();
                 int x = shipScanner.nextInt();
                 int y = shipScanner.nextInt();
+                String orientation = shipScanner.next().toLowerCase();
                 String name = shipScanner.next();
-                Ship ship = new Ship(name, lengte, x, y);
+
+                List<Position> positions = new ArrayList<>();
+
+                if (orientation.equals("horizontal")) {
+                    for (int i = 0; i < lengte; i++) {
+                        positions.add(new Position(x + i, y));
+                    }
+                } else {
+                    for (int i = 0; i < lengte; i++) {
+                        positions.add(new Position(x, y + i));
+                    }
+                }
+
+                Ship ship = new Ship(name, positions);
                 schepen.add(ship);
             }
         }
+
+    }
+    public int getBreedte() {
+        return breedte;
+    }
+
+    public int getHoogte() {
+        return hoogte;
+    }
+
+    public List<Ship> getSchepen() {
+        return schepen;
     }
 }

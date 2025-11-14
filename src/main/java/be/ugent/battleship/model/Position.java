@@ -18,4 +18,23 @@ public class Position {
     public int getCol(){
         return x;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Position)) return false;
+        Position p = (Position) o;
+        return x == p.x && y == p.y;
+    }
+
+    @Override
+    public int hashCode() {
+        return 31 * x + y;
+    }
+
+    @Override
+    public String toString() {
+        return "(" + x + "," + y + ")";
+    }
+
 }
