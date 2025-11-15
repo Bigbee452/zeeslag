@@ -1,14 +1,16 @@
 package be.ugent.battleship.model;
 
 import java.util.List;
+import java.io.File;
 
 public class BattleshipSoloGame implements IBattleshipSoloGame {
 
     private final Grid grid;
     private int moveCount = 0;
 
-    public BattleshipSoloGame(DAO dao) {
+    public BattleshipSoloGame(File file) {
 
+        DAO dao = new DAO(file);
         grid = new Grid(dao.getBreedte(), dao.getHoogte());
 
         List<Ship> ships = dao.getSchepen();

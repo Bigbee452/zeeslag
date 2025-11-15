@@ -81,8 +81,7 @@ public class ZeeslagSoloView extends Application {
 
 
     private void initializeGameForTestPhase() {
-        DAO dao = new DAO(pathToGames + "shipsA.txt");
-        gameModel = new BattleshipSoloGame(dao);
+        gameModel = new BattleshipSoloGame(new File(pathToImages+"shipsA.txt"));
         cols = gameModel.getColumnCount();
         rows = gameModel.getRowCount();
 
@@ -97,8 +96,7 @@ public class ZeeslagSoloView extends Application {
         File selectedFile = fileChooser.showOpenDialog(primaryStage);
 
         if (selectedFile != null) {
-            DAO dao = new DAO(selectedFile.getAbsolutePath());
-            gameModel = new BattleshipSoloGame(dao);
+            gameModel = new BattleshipSoloGame(selectedFile);
 
             cols = gameModel.getColumnCount();
             rows = gameModel.getRowCount();
