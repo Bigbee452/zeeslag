@@ -1,0 +1,18 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+Class Cell {
+    -pos: Position
+    -ship: Ship
+    -wasShot: boolean
+    --
+    +Cell(pos: Position)
+    --
+    +hasShip(): boolean
+    +getPosition(): Position
+    +setShip(ship: Ship): void
+    +getShip(): Ship
+    +wasShot(): boolean
+    +markShot(): void
+}
+@enduml
