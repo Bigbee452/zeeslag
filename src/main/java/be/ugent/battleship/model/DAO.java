@@ -21,6 +21,9 @@ public class DAO {
             this.hoogte = sc.nextInt();
             while(scanner.hasNextLine()){
                 String line = scanner.nextLine().trim();
+                if(line.isEmpty()){
+                    break;
+                }
                 Scanner shipScanner = new Scanner(line);
                 int lengte = shipScanner.nextInt();
                 int x = shipScanner.nextInt();
