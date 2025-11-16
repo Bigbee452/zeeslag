@@ -162,6 +162,7 @@ public class ZeeslagSoloView extends Application {
                     gameModel.shoot(pos);
                     String nameOfImage = gameModel.getCellContentImage(pos);
                     setGraphicOnButton(button, nameOfImage);
+                    movesLabel.setText("Moves: " + gameModel.getMoveCount());
 
                     checkShipSunk(pos);
                     checkGameOver();
